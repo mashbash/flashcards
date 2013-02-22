@@ -1,15 +1,17 @@
 class Round < ActiveRecord::Base
-  has_one :deck
+  belongs_to :deck
   has_many :guesses
 
   def play_card
-    # will return card that has not been played
+    cards_where(false).sample
   end
 
   def played_count
+    cards_where(true).count
   end
 
   def unplayed_count
+    self.deck.count - cards_where(true).count
   end
 
   def complete!
@@ -17,8 +19,10 @@ class Round < ActiveRecord::Base
   end
 
   private
-  def unplayed_cards
-    Card.includes(:guess).where(:guess => {:round_id => self.id, 
-                                           :attempt => nil})
+  def cards_where(arg)
+    arg ? played = "NOT" : played = ""
+    ids = Guess.select(:card_id).where(:round_id => self.id).
+                                 where("attempt IS #{played} NULL")
+    Card.where(:id => ids)
   end
 end

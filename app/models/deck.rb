@@ -1,4 +1,8 @@
 class Deck < ActiveRecord::Base
   has_many :cards
-  belongs_to :round
+  has_many :rounds
+
+  def count
+    self.cards.count
+  end
 end
