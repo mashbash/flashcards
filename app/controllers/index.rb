@@ -6,7 +6,5 @@
 
 get '/' do
   @rounds = Round.all
-  @guesses = @rounds.guesses
-  
   erb :index
 end

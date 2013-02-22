@@ -1,26 +1,30 @@
 
-get '/rounds' do
+get '/rounds/new' do
   @decks = Deck.all
   erb :show_decks
 end
 
 
-
-get 'rounds/:id' do
+post '/rounds'
   @deck = Deck.find(params[:id])
   @round = Round.new(@deck.id)
   if @round.save
-    erb :show_round
+    redirect "/rounds/#{@round.id}"
   else
     redirect '/'
   end
 end
 
 
-get 'rounds/:id/play_card' do
+get '/rounds/:id' do
   @round = Round.find(params[:id])
-  @deck  = @round.deck_id
-  @card  = deck.cards.find {|card| card.guess == false}
+  erb :show_round
+end
+
+
+get '/rounds/:id/play_card' do
+  @round = Round.find(params[:id])
+  @card  = @round.play_card
   erb :show_card
 end
 

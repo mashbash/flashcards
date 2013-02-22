@@ -11,9 +11,9 @@
 </style>
 
 <div class="container">
-  <h1> Welcome to your flashcard game bonanza!<h1>
+  <h1> Welcome to your flashcard game bonanza!</h1>
     <% unless @rounds.nil? %> 
     <% @rounds.each do |round| %>
-    <p>Round <%= round.id %> playing <%= round.deck.name =></p>
+    <p>Round <%= round.id %> playing <%= round.deck.topic %> You have played <%= round.played_count %> cards and you have <%= round.unplayed_count %> card left.</p>
     <% end %>
 </div>
