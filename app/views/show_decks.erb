@@ -4,22 +4,13 @@
 - submit button 
 -->
 
-<style type="text/css">
-  .container {
-    margin: 20px auto;
-    width: 600px;
-    padding: 0px 20px 20px 20px;
-    border: 1px dotted black;
-  }
-  th {
-    text-align: left;
-  }
-</style>
 
 <div class="container">
   <h1> Please choose which topic you would like to play</h1>
   <form name="decklist" action="/rounds" method="post">
-  <% @decks.each do |topic| %>
-</form>
-
+  <% @decks.each do |deck| %>
+  <input type="radio" name="id" value="<%= deck.id %>"> <%= deck.topic %><br>
+  <% end %>
+  <input type="submit" value="Start game"/>
+  </form>
 </div>
