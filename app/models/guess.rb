@@ -15,7 +15,7 @@ class Guess < ActiveRecord::Base
   end
 
   def check_answer
-    self.correct = (self.attempt == self.card.answer)
+    self.correct = (self.attempt == self.card.answer.strip.chomp.downcase)
     true
   end
 end
