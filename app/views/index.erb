@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <h1> Welcome to your flashcard game bonanza!</h1>
     <% unless @rounds.nil? %> 
@@ -10,9 +8,9 @@
       <input type="submit" value="Replay"/>
     </form>
     <% if round.complete == true %>
-     <form name="stats" action="/rounds/<%= round.id %>" method="get"><input type="submit" value="Show Stats"/></form>
+      <form name="stats" action="/rounds/<%= round.id %>" method="get"><input type="submit" value="Show Stats"/></form>
     <% else %>
-     <form name="continue" action="/rounds/<%= round.id %>" method="get"><input type="submit" value="Continue"/></form>
+      <form name="continue" action="/rounds/<%= round.id %>" method="get"><input type="submit" value="Continue"/></form>
     </p>
     <% end %>
     <% end %>
