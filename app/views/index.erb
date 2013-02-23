@@ -7,7 +7,7 @@
       <input type="hidden" name="id" value="<%= round.deck_id %>"/>
       <input type="submit" value="Replay"/>
     </form>
-    <% if round.complete == true %>
+    <% if round.complete %>
       <form name="stats" action="/rounds/<%= round.id %>" method="get"><input type="submit" value="Show Stats"/></form>
     <% else %>
       <form name="continue" action="/rounds/<%= round.id %>" method="get"><input type="submit" value="Continue"/></form>
