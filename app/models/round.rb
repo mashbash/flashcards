@@ -10,6 +10,14 @@ class Round < ActiveRecord::Base
     card
   end
 
+  def accuracy_rate
+    if self.played_count > 0
+      self.guesses.find_all {|guess| guess.correct?}.count*100/self.played_count
+    else 
+      0
+    end
+  end
+
   def played_count
     played_card_ids.count
   end
