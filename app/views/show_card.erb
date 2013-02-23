@@ -1,4 +1,6 @@
 <div class="container">
+  <p><%= session[:message] unless session[:message].nil? %></p>
+  <p><% session[:message]=nil %></p>
   <h1 class="question-number"> Question number <%= @round.played_count + 1 %> </h1>
   <p class="question"><%= @card.question %></p>
    <form class="guess-form" action="/rounds/<%= @round.id %>/guesses" method="post">
@@ -6,5 +8,6 @@
     <input type="hidden" name="card_id" value="<%= @card.id %>"/>
     <input type="submit" value="Play"/>
   </form>
+
   <a href="/">&larr; Return to home</a>
 </div>
