@@ -1,0 +1,12 @@
+
+
+<div class="container">
+  <h1> Question number <%= @card.id %> </h1>
+  <p><%= @card.question %></p>
+
+  <form action="/guesses" method="post">
+    <input type="hidden" name="_method" value="put"/>
+    <input type="submit" value="Play"/>
+  </form>
+  <a href="/">&larr; Return to home</a>
+</div>

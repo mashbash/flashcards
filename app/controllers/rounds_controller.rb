@@ -26,6 +26,8 @@ end
 get '/rounds/:id/play_card' do
   @round = Round.find(params[:id])
   @card  = @round.play_card
+  puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+  puts @card
   erb :show_card
 end
 
