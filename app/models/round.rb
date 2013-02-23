@@ -18,8 +18,12 @@ class Round < ActiveRecord::Base
     unplayed_card_ids.count
   end
 
-  def percent_correct
-    Guess.where(correct: true).count / Guess.where("attempt IS NOT NULL").count
+  def accuracy_rate
+    if self.played_count > 0
+      self.guesses.find_all {|guess| guess.correct?}.count*100/self.played_count
+    else 
+      0
+    end 
   end
 
   def complete?
@@ -29,12 +33,12 @@ class Round < ActiveRecord::Base
   private
   def played_card_ids
     Card.select(:id).includes(:guesses).
-                     where(:guesses => { :round_id => r.id} ).
+                     where(:guesses => { :round_id => self.id} ).
                      where("attempt IS NOT NULL")
   end
 
   def unplayed_card_ids
-    deck_ids = Card.select(:id).where(:deck_id => r.deck.id)
+    deck_ids = Card.select(:id).where(:deck_id => self.deck.id)
     unplayed_ids = deck_ids - played_card_ids
   end
 

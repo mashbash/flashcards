@@ -5,7 +5,7 @@
   <h1>Round <%= @round.id %> Stats</h1>
   <p>You have guessed <%= @round.played_count %> out of <%= @round.deck.count %> cards.</p>
   <p>You still have <%= @round.unplayed_count %> cards left.</p>
-  <p>You have a <%= @round.percent_correct %>% accuracy rate.</p>
+  <p>You have a <%= @round.accuracy_rate %>% success rate</p>
   <% unless @round.complete? %>
   <form name="round_id" action="/rounds/<%= @round.id %>/play_card" method="get">
   <input type="submit" value="Play"/>
