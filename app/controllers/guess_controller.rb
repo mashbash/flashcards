@@ -1,15 +1,14 @@
 
-put '/guesses' do
-  @guess = Guess.new(params) ## pass card_id as hidden input
-  @guess.save
-  @card = Card.find(@guess.card_id)
-  if @guess.attempt.downcase == @card.answer.downcase
-    @guess.update_attributes(:correct =>true)
+post '/rounds/:round_id/guesses' do
+  clean_params(params)
+  @guess = Guess.create(params) ## pass card_id as hidden input
+
+  if @guess.correct?
     session[:message] = "Great job"## Congrats message
   else
-    ## Fail message
     session[:message] = "Sorry but your answer was wrong"
   end
 
   redirect "rounds/#{@guess.round_id}/play_card"
 end
+
