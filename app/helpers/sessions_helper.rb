@@ -8,6 +8,9 @@ helpers do
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    //memoization - allows it to cache the data so you don't have to keep going to the database to check the user id
+    //if anything to the left of ||= is not nil, show that else go do the stuff on the right
+    //the instance variable is just convention
   end
 
   def logged_in
